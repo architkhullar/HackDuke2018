@@ -21,16 +21,17 @@ var workrequestSchema = new Schema({
     required: 'Kindly enter the area name',
     default: 'university area'
   },
-  job:{
-    type: String,
-    required: 'Kindly enter the job description',
-    default: 'move fridge to second floor'
-  },
-  skills:{
+  skill:{
     type: String,
     required: 'Kindly enter the any special skills required, if any',
     default: ''
   },
+  job:{
+    type: String,
+    required: 'Kindly enter the job description',
+    default: 'move fridge to second floor'
+  }
+
 });
 
 
