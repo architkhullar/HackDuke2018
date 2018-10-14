@@ -62,20 +62,21 @@ else if(input.includes("WORK")){
   newworkRequest.job=data.slice(fromIndex,toIndex);
   console.log(newworkRequest.job);
   WorkRequestHandlers.register_workrequest(newworkRequest,function(err,response) {
-    console.log(response);
+    //console.log(response);
     if (err) throw err;
-    if (response != null && response != '' && response != []) {
-      console.log(response);
-      console.log('workrequest saved');
-      var message="Hi! I have a job: "+ newworkRequest.job +" please contact me at: "+newworkRequest.from;
-
-      response.forEach(function(item,index) {
-
-        sendData(item,message);
-      })
-    }
+    // if (response != null && response != '' && response != []) {
+    //   console.log(response);
+    //   console.log('workrequest saved');
+    //   var message="Hi! I have a job: "+ newworkRequest.job +" please contact me at: "+newworkRequest.from;
+    //
+    //   response.forEach(function(item,index) {
+    //
+    //     sendData(item,message);
+    //   })
+    // }
     return;
   })
+
 
 }
 

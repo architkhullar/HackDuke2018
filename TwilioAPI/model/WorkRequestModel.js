@@ -21,7 +21,7 @@ var workrequestSchema = new Schema({
     required: 'Kindly enter the area name',
     default: 'university area'
   },
-  skill:{
+    skill:{
     type: String,
     required: 'Kindly enter the any special skills required, if any',
     default: ''

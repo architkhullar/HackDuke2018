@@ -1,11 +1,14 @@
 'use strict';
 module.exports = function(app) {
   var TwilioHandlers = require('../controllers/TwilioController.js');
-  // var AdminHandlers = require('../controllers/AdminController.js');
+  var WorkRequestHandlers = require('../controllers/WorkRequestController.js');
   // var PatientHandlers = require('../controllers/PatientController.js');
 
   app.route('/sms')
     .post(TwilioHandlers.sms);
+
+  app.route('/register_workrequest_mobile')
+    .post(WorkRequestHandlers.register_workrequest_mobile);
 
 //   app.route('/create_admin')
 //       .post(AdminHandlers.create_admin);

@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     var newHandyman = new handyman();
     newHandyman = req;
     newHandyman.save(function(err, handyman){
+      console.log(handyman);
       if (err) {
         //return res.status(400).send({
           //message: err, status:'400'
