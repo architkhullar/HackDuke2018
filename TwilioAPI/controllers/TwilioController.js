@@ -6,7 +6,9 @@ var mongoose = require('mongoose'),
   workrequest = mongoose.model('workrequest'),
   HandymanHandlers = require('../controllers/HandymanController.js'),
   WorkRequestHandlers = require('../controllers/WorkRequestController.js');
-
+  const accountSid = 'ACa85c7b7f567b95194f8868555ebe16be';
+  const authToken = 'e58077322dda5c40a269f6c043c89559';
+  const client = require('twilio')(accountSid, authToken);
 
 exports.sms = function(req, res) {
   var input=req.body.Body.toUpperCase();
@@ -35,7 +37,7 @@ exports.sms = function(req, res) {
     if (data) {
         console.log('handyman saved');
       }
-
+  return;
   });
 }
 //case for the workrequest
@@ -48,19 +50,46 @@ if(input.includes("WORK")){
   newworkRequest.zip = split_data[2];
   newworkRequest.region = split_data[3];
   newworkRequest.skill=split_data[4];
- var fromIndex= data.indexOf(split_data[4])+split_data[4].length;
+ var fromIndex= data.indexOf(split_data[4])+split_data[4].length+1;
  var toIndex= data.length;
  console.log(fromIndex);
  console.log(toIndex);
   newworkRequest.job=data.slice(fromIndex,toIndex);
   console.log(newworkRequest.job);
-  WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
+  WorkRequestHandlers.register_workrequest(newworkRequest,function(err,response) {
     if (err) throw err;
-    if (data) {
+    if (response.data!=null && response.data!=''&& response.data!=[]) {
       console.log('workrequest saved');
+      var message="Hi! I have a job: "+ newworkRequest.job +" please contact me at: "+newworkRequest.from;
+      
+      response.data.forEach(function(item,index) {
+        
+        sendData(item,message);
+      })
     }
+    return;
   })
 
 }
+if(input.includes("START")){
+  var toPhoneNumber=req.body.From;
+  var message="Welcome to EasyConnect please use the following format for registering to work broadcast: register <yourname> <zipcode> <area>. "
+sendData(toPhoneNumber,message);
+}else{
+  var toPhoneNumber=req.body.From;
+  var message="Incorrect format! please use the following format for registering to work broadcast: register <yourname> <zipcode> <area>. "
+sendData(toPhoneNumber,message);
+}
 
   };
+  
+function sendData(toNumber,message) {
+  client.messages.create({
+    body:"\n"+ message +"\n",
+    from: '+18509192242',
+    to: toNumber
+  })
+  .then(message => console.log(message.sid))
+  .done();
+}
+
