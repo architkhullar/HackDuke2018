@@ -52,14 +52,14 @@ if(input.includes("WORK")){
  var toIndex= data.length;
  console.log(fromIndex);
  console.log(toIndex);
-  newworkRequest.job=data.split(fromIndex,toIndex);
+  newworkRequest.job=data.slice(fromIndex,toIndex);
   console.log(newworkRequest.job);
-  // WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
-  //   if (err) throw err;
-  //   if (data) {
-  //     console.log('workrequest saved');
-  //   }
-  // })
+  WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
+    if (err) throw err;
+    if (data) {
+      console.log('workrequest saved');
+    }
+  })
 
 }
 
