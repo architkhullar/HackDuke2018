@@ -8,22 +8,22 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textViewEmail"
+        android:id="@+id/textViewName"
         android:layout_width="93dp"
         android:layout_height="37dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="21dp"
         android:layout_marginTop="131dp"
-        android:text="Email"
-        android:textSize="18dp"
-        android:textColor="@android:color/black" />
+        android:text="Name"
+        android:textColor="@android:color/black"
+        android:textSize="18dp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewEmail"
+        android:layout_above="@+id/textViewName"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="-168dp"
         android:layout_marginEnd="26dp"
@@ -32,56 +32,130 @@
         android:inputType="textEmailAddress"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="166dp"
-        android:text="Login" />
 
     <TextView
-        android:id="@+id/textViewPassword"
+        android:id="@+id/textViewNumber"
         android:layout_width="90dp"
         android:layout_height="34dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textViewEmail"
-        android:layout_marginTop="207dp"
-        android:text="Password"
+        android:layout_alignBottom="@+id/editTextNumber"
+        android:layout_alignEnd="@+id/textViewName"
+        android:text="Number"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textViewPassword"
-        android:layout_alignStart="@+id/editText3"
+        android:layout_alignStart="@+id/editTextName"
+        android:layout_below="@+id/textViewName"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textViewZip"
+        android:layout_width="90dp"
+        android:layout_height="34dp"
+
+        android:layout_alignStart="@+id/textViewNumber"
+        android:layout_alignTop="@+id/editTextZip"
+        android:text="Zip"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/editTextZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignStart="@+id/editTextNumber"
+        android:layout_below="@+id/editTextNumber"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textViewSkill"
+        android:layout_width="90dp"
+        android:layout_height="34dp"
+
+        android:layout_alignEnd="@+id/textViewName"
+        android:layout_below="@+id/editTextZip"
+        android:layout_marginTop="17dp"
+        android:text="Skill"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/editTextSkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignBottom="@+id/textViewSkill"
+        android:layout_alignStart="@+id/editTextNumber"
+        android:ems="10"
+        android:inputType="text" />
+
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonCreate"
         android:layout_width="133dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="84dp"
-        android:layout_marginStart="125dp"
-        android:text="Register" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:text="Save" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="266dp"
-        android:layout_height="58dp"
-        android:layout_alignEnd="@+id/textViewPassword"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="-208dp"
-        android:layout_marginTop="33dp"
-        android:text="HackDukeApp"
+        android:id="@+id/textViewJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextJob"
+        android:layout_alignBottom="@+id/editTextJob"
+        android:layout_alignStart="@+id/textViewSkill"
+        android:text="Job"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/editTextJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editTextRegion1"
+        android:layout_below="@+id/editTextRegion1"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Work Request"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewRegion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textViewName"
+        android:layout_below="@+id/editTextSkill"
+        android:layout_marginTop="24dp"
+        android:text="Region"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/editTextRegion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewRegion"
+        android:layout_alignBottom="@+id/textViewRegion"
+        android:layout_alignStart="@+id/editTextSkill"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
 
 </RelativeLayout>
