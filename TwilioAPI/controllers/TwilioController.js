@@ -9,7 +9,8 @@ var mongoose = require('mongoose'),
 
 
 exports.sms = function(req, res) {
-  if (req.body.Body.toUpperCase().includes('REGISTER')){
+  var input=req.body.Body.toUpperCase();
+  if (input.includes('REGISTER')){
   var data = req.body.Body;
   var split_data = data.split(" ");
   var newHandyman = new handyman();
@@ -31,11 +32,32 @@ exports.sms = function(req, res) {
   HandymanHandlers.register_handyman(newHandyman, function(err,data){
 
     if (err) throw err;
-      if (user) {
+    if (data) {
         console.log('handyman saved');
       }
 
   });
 };
+//case for the workrequest
+if(input.includes("WORK")){
+  var data = req.body.Body;
+  var split_data = data.split(" ");
+  var newworkRequest= workrequest();
+  newworkRequest.from = req.body.From;
+  newworkRequest.Name = split_data[1];
+  newworkRequest.zip = split_data[2];
+  newworkRequest.region = split_data[3];
+  newworkRequest.skill=split_data[4];
+ var fromIndex= data.indexOf(split_data[4])+split_data[4].length;
+ var toIndex= data.length;
+  newworkRequest.job=data.split(fromIndex,toIndex);
+  WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
+    if (err) throw err;
+    if (data) {
+      console.log('workrequest saved');
+    }
+  })
+
+}
 
   };
