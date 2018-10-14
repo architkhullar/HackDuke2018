@@ -2,34 +2,45 @@
 
 var mongoose = require('mongoose');
   // admin = mongoose.model('Admin');
+  workrequest = mongoose.model('workrequest');
+  handyman = mongoose.model('handyman');
 
 
-  exports.create_admin = function(req, res) {
-    var newAdmin = new Admin(req.body);
-    newAdmin.save(function(err, admin) {
+  exports.register_workrequest = function(req, res) {
+    var newworkrequest = new workrequest();
+    newworkrequest = req;
+    newworkrequest.save(function(err, workrequest){
       if (err) {
-        return res.status(400).send({
-          message: err, status:'400'
-        });
+        //return res.status(400).send({
+          //message: err, status:'400'
+          console.log(err);
+
       } else {
-        return res.json({name:newAdmin.name, message: 'admin submitted successfully', status:'200'});
+
+        // return res.json({data:handyman, message: 'admin submitted successfully', status:'200'});
         // return res.json({message: 'Admin created successfully', status:'200'});
+        console.log('work request saved');
+
         }
     });
-  };
 
-  exports.admin_login = function(req, res) {
-    Admin.findOne({
-    username: req.body.username,
-    password: req.body.password
-  }, function(err, admin) {
-      if (err)  throw err;
-      if (!admin) {
-      res.status(401).json({ message: 'Authentication failed. Admin not found.', status: '401' });
-    } else if (admin) {
-      console.log("done");
-      return res.json({token: jwt.sign({ username: admin.username}, 'secretkey'), message: 'Authentication successful, Admin logged in', status: '200' });
-
-    }
-  });
 };
+
+// exports.circulate = function(req, res) {
+//   var newHandyman = new workrequest();
+//   newHandyman = req;
+//   newHandyman.save(function(err, handyman){
+//     if (err) {
+//       //return res.status(400).send({
+//         //message: err, status:'400'
+//         console.log(err);
+//
+//     } else {
+//
+//       // return res.json({data:handyman, message: 'admin submitted successfully', status:'200'});
+//       // return res.json({message: 'Admin created successfully', status:'200'});
+//       console.log('saved');
+//       }
+//   });
+//
+// };

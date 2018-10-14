@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
 
         // return res.json({data:handyman, message: 'admin submitted successfully', status:'200'});
         // return res.json({message: 'Admin created successfully', status:'200'});
-        console.log('saved');
+        console.log('handyman saved');
         }
     });
 
