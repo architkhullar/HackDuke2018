@@ -41,29 +41,36 @@ exports.sms = function(req, res) {
   });
 }
 //case for the workrequest
-if(input.includes("WORK")){
+else if(input.includes("WORK")){
+
   var data = req.body.Body;
   var split_data = data.split(" ");
   var newworkRequest= workrequest();
+
   newworkRequest.from = req.body.From;
   newworkRequest.Name = split_data[1];
   newworkRequest.zip = split_data[2];
   newworkRequest.region = split_data[3];
   newworkRequest.skill=split_data[4];
+
  var fromIndex= data.indexOf(split_data[4])+split_data[4].length+1;
  var toIndex= data.length;
+
  console.log(fromIndex);
  console.log(toIndex);
+
   newworkRequest.job=data.slice(fromIndex,toIndex);
   console.log(newworkRequest.job);
   WorkRequestHandlers.register_workrequest(newworkRequest,function(err,response) {
+    console.log(response);
     if (err) throw err;
-    if (response.data!=null && response.data!=''&& response.data!=[]) {
+    if (response != null && response != '' && response != []) {
+      console.log(response);
       console.log('workrequest saved');
       var message="Hi! I have a job: "+ newworkRequest.job +" please contact me at: "+newworkRequest.from;
-      
-      response.data.forEach(function(item,index) {
-        
+
+      response.forEach(function(item,index) {
+
         sendData(item,message);
       })
     }
@@ -71,18 +78,23 @@ if(input.includes("WORK")){
   })
 
 }
-if(input.includes("START")){
+
+else if(input.includes("START")){
   var toPhoneNumber=req.body.From;
   var message="Welcome to EasyConnect please use the following format for registering to work broadcast: register <yourname> <zipcode> <area>. "
 sendData(toPhoneNumber,message);
-}else{
+}
+
+else
+
+{
   var toPhoneNumber=req.body.From;
   var message="Incorrect format! please use the following format for registering to work broadcast: register <yourname> <zipcode> <area>. "
 sendData(toPhoneNumber,message);
 }
 
   };
-  
+
 function sendData(toNumber,message) {
   client.messages.create({
     body:"\n"+ message +"\n",
@@ -92,4 +104,3 @@ function sendData(toNumber,message) {
   .then(message => console.log(message.sid))
   .done();
 }
-

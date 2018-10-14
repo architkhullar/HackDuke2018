@@ -16,7 +16,37 @@ var mongoose = require('mongoose');
       } else {
 
         console.log('work request saved');
-        circulate(newworkrequest)
+        //console.log(newworkrequest);
+        //var string = JSON.stringify(newworkrequest);
+        //var objectValue = JSON.parse(string);
+        var getzip = newworkrequest.zip;
+        console.log(getzip);
+
+        handyman.find({
+            zip: getzip
+          },{
+            from: 1,
+            _id: 0
+          }
+          , function(err, data){
+            if (err) console.log(err);
+            if(data){
+              var list = []
+
+              for (var i = 0; i < data.length; i++) {
+                var counter = data[i].from;
+                list.push(counter);
+
+              }
+              console.log(list);
+              return list;
+            }
+      });
+
+
+        //return res.json({token: jwt.sign({ username: admin.username}, 'secretkey'), message: 'Authentication successful, Admin logged in', status: '200' });
+         return res(null, circulate(newworkrequest));
+
 
 
         }
@@ -33,12 +63,24 @@ var circulate = function(newworkrequest){
   var objectValue = JSON.parse(string);
   var getzip = objectValue['zip'];
 
-  handyman.findAll({
+  handyman.find({
       zip: getzip
-    }, function(err, data){
+    },{
+      from: 1,
+      _id: 0
+    }
+    , function(err, data){
       if (err) console.log(err);
       if(data){
-        console.log(data);
+        var list = []
+
+        for (var i = 0; i < data.length; i++) {
+          var counter = data[i].from;
+          list.push(counter);
+
+        }
+        console.log(list);
+        return list;
       }
 });
 };
