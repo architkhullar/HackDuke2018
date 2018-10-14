@@ -37,7 +37,7 @@ exports.sms = function(req, res) {
       }
 
   });
-};
+}
 //case for the workrequest
 if(input.includes("WORK")){
   var data = req.body.Body;
@@ -50,13 +50,16 @@ if(input.includes("WORK")){
   newworkRequest.skill=split_data[4];
  var fromIndex= data.indexOf(split_data[4])+split_data[4].length;
  var toIndex= data.length;
+ console.log(fromIndex);
+ console.log(toIndex);
   newworkRequest.job=data.split(fromIndex,toIndex);
-  WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
-    if (err) throw err;
-    if (data) {
-      console.log('workrequest saved');
-    }
-  })
+  console.log(newworkRequest.job);
+  // WorkRequestHandlers.register_workrequest(newworkRequest,function(err,res) {
+  //   if (err) throw err;
+  //   if (data) {
+  //     console.log('workrequest saved');
+  //   }
+  // })
 
 }
 
