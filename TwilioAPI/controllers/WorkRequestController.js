@@ -11,36 +11,34 @@ var mongoose = require('mongoose');
     newworkrequest = req;
     newworkrequest.save(function(err, workrequest){
       if (err) {
-        //return res.status(400).send({
-          //message: err, status:'400'
           console.log(err);
 
       } else {
 
-        // return res.json({data:handyman, message: 'admin submitted successfully', status:'200'});
-        // return res.json({message: 'Admin created successfully', status:'200'});
         console.log('work request saved');
+        circulate(newworkrequest)
+
 
         }
     });
 
 };
 
-// exports.circulate = function(req, res) {
-//   var newHandyman = new workrequest();
-//   newHandyman = req;
-//   newHandyman.save(function(err, handyman){
-//     if (err) {
-//       //return res.status(400).send({
-//         //message: err, status:'400'
-//         console.log(err);
-//
-//     } else {
-//
-//       // return res.json({data:handyman, message: 'admin submitted successfully', status:'200'});
-//       // return res.json({message: 'Admin created successfully', status:'200'});
-//       console.log('saved');
-//       }
-//   });
-//
-// };
+var circulate = function(newworkrequest){
+  var workrequest_search = new workrequest();
+  newworkrequest_search = newworkrequest;
+
+  console.log(newworkrequest);
+  var string = JSON.stringify(newworkrequest);
+  var objectValue = JSON.parse(string);
+  var getzip = objectValue['zip'];
+
+  handyman.findAll({
+      zip: getzip
+    }, function(err, data){
+      if (err) console.log(err);
+      if(data){
+        console.log(data);
+      }
+});
+};
